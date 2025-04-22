@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import './App.css'
+import ThemeSwitch from './components/ThemeSwitch'
+import ThemeContext from './context/ThemeContext'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState('lightMode');
 
   return (
-    <>
-      <h1>Escolha o aqui</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} >
-          count is {count}
-        </button>
-       <button> teste</button>
-       </div>
-    </>
+      <ThemeContext.Provider value={{ 
+        theme,
+        setTheme
+      }}>
+          <div id={theme === 'lightMode' ? 'lightMode' : 'darkMode' }>
+            <h1>Escolha o tema</h1>
+            <ThemeSwitch />
+        </div>
+      </ThemeContext.Provider>
   )
 }
 
